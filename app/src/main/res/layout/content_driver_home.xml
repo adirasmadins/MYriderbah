@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="driver.dev.asliborneo.app.myridebah.DriverHome"
+    tools:showIn="@layout/app_bar_driver_home">
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="driver.dev.asliborneo.app.myridebah.DriverHome"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        app:cardElevation="10dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="16dp"
+            android:weightSum="10"
+            >
+            <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:id="@+id/location_switch"
+                app:icon_release="@drawable/ic_location_off"
+                app:icon_press="@drawable/ic_location_on"
+                app:base_release_color="#212121"
+                app:base_press_color="#FAFAFA"
+                app:ball_release_color="#9E9E9E"
+                app:ball_press_color="#fff"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:background="@color/btnSignIn"
+                android:text="FIND USER"
+                android:id="@+id/findUser"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

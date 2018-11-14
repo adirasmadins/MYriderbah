@@ -1,0 +1,117 @@
+{
+  "project_info": {
+    "project_number": "379504821429",
+    "firebase_url": "https://myridebah.firebaseio.com",
+    "project_id": "myridebah",
+    "storage_bucket": "myridebah.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379504821429:android:3b1cd75eb34e8394",
+        "android_client_info": {
+          "package_name": "driver.dev.asliborneo.app.myridebah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379504821429-u63me6or2ls1fbhpa8ih9prfqklj0etq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "driver.dev.asliborneo.app.myridebah",
+            "certificate_hash": "abdf27ccba9b5b0c2ab4299e719f07e66eed27a2"
+          }
+        },
+        {
+          "client_id": "379504821429-9kt45k3pl83mpuhn81ggp8tcnkos95va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEijHZvFFhN6-7aLSYJhpBooJUkzzOqa0"
+        },
+        {
+          "current_key": "AIzaSyAzCKysV_w1Eva5KuByZFzL2IPurWMyZ9I"
+        },
+        {
+          "current_key": "AIzaSyCV_9lGh8j6QBQqgrMWaT2FSlDYeweCxz4"
+        },
+        {
+          "current_key": "AIzaSyBhAbpv9j4Xr0OfQQSZTXVRMfx8u4p1mr4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379504821429-9kt45k3pl83mpuhn81ggp8tcnkos95va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379504821429:android:50d605f05ec04c76",
+        "android_client_info": {
+          "package_name": "rider.dev.asliborneo.app.myridebah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "379504821429-1197p5f8pseqjh28s056671ph0jlejql.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rider.dev.asliborneo.app.myridebah",
+            "certificate_hash": "abdf27ccba9b5b0c2ab4299e719f07e66eed27a2"
+          }
+        },
+        {
+          "client_id": "379504821429-9kt45k3pl83mpuhn81ggp8tcnkos95va.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEijHZvFFhN6-7aLSYJhpBooJUkzzOqa0"
+        },
+        {
+          "current_key": "AIzaSyAzCKysV_w1Eva5KuByZFzL2IPurWMyZ9I"
+        },
+        {
+          "current_key": "AIzaSyCV_9lGh8j6QBQqgrMWaT2FSlDYeweCxz4"
+        },
+        {
+          "current_key": "AIzaSyBhAbpv9j4Xr0OfQQSZTXVRMfx8u4p1mr4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "379504821429-9kt45k3pl83mpuhn81ggp8tcnkos95va.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
