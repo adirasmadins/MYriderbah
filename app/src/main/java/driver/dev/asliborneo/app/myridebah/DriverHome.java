@@ -276,7 +276,7 @@ public class DriverHome extends AppCompatActivity implements NavigationView.OnNa
                     FirebaseDatabase.getInstance().goOffline();
                     if (mcurrent != null)
                         mcurrent.remove();
-                    mMap.clear();
+
                     mMap.setMyLocationEnabled(false);
                     handler.removeCallbacks(drawPathRunnable);
                     stop_location_updates();
@@ -289,12 +289,14 @@ public class DriverHome extends AppCompatActivity implements NavigationView.OnNa
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
+                mMap.clear();
                 if (location_switch.isChecked()) {
+
                     destination = place.getAddress().toString();
                     destination = destination.replace(" ", "+");
                     mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.marker)).position(new LatLng(lat,lng)));
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15.0f));
-                    mMap.clear();
+
               /*      pickup_location = place.getLatLng();
                     mlastlocation.setLatitude(place.getLatLng().latitude);
                     mlastlocation.setLongitude(place.getLatLng().longitude);
@@ -304,7 +306,7 @@ public class DriverHome extends AppCompatActivity implements NavigationView.OnNa
 
 
                     Log.d("DESTINATION", destination);
-                    getDirection();
+                    getDirectionsUrl();
 
                 } else {
                     Toast.makeText(DriverHome.this, "Please Change your status to Online", Toast.LENGTH_LONG).show();

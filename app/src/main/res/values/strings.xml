@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MYride Bah!!!</string>
     <string name="title_activity_welcome">Map</string>
-    <string name="google_direction_api">AIzaSyCw0musjvyG7sFkZf0QeVCCeUPK3TEztIE</string>
+    <string name="google_direction_api">AIzaSyCvTarh15HCSswRUYYBspC686nejxq8xH4</string>
     <string name="location_permission_denied">permission denied</string>
     <string name="permission_required_toast">required toast</string>
     <string name="permission_rationale_location">permission rationale</string>

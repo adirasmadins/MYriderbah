@@ -76,7 +76,7 @@ public class DriverTracking extends FragmentActivity implements OnMapReadyCallba
     double rider_lat,rider_lng;
     LocationRequest location_request;
     GoogleApiClient mGoogleapiclient;
-     Circle rider_marker;
+    Circle rider_marker;
     private Marker driver_marker;
     private com.google.android.gms.maps.model.Polyline direction;
     GeoFire geoFire;
@@ -181,7 +181,7 @@ public class DriverTracking extends FragmentActivity implements OnMapReadyCallba
 
     private void Calculate_cash_fee(final Location pick_up_location, final Location mlastlocation) {
         IGoogleAPI service=RetrofitClient.get_direction_client().create(IGoogleAPI.class);
-        Call<Directions> call=service.getPath("driving","less_driving" ,mlastlocation.getLatitude()+","+mlastlocation.getLongitude(),pick_up_location.getLatitude()+","+pick_up_location.getLongitude(),"AIzaSyCw0musjvyG7sFkZf0QeVCCeUPK3TEztIE");
+        Call<Directions> call=service.getPath("driving","less_driving" ,mlastlocation.getLatitude()+","+mlastlocation.getLongitude(),rider_lat + "," + rider_lng,"AIzaSyCw0musjvyG7sFkZf0QeVCCeUPK3TEztIE");
         call.enqueue(new Callback<Directions>() {
             @Override
             public void onResponse(Call<Directions> call, Response<Directions> response) {
@@ -255,7 +255,7 @@ public class DriverTracking extends FragmentActivity implements OnMapReadyCallba
         currentPosition = new LatLng(mlastlocation.getLatitude(), mlastlocation.getLongitude());
 
 
-        mService.getPath("driving", "less_driving", mlastlocation.getLatitude() + "," + mlastlocation.getLongitude(), rider_lat + "," + rider_lng, "AIzaSyCw0musjvyG7sFkZf0QeVCCeUPK3TEztIE")
+        mService.getPath("driving", "less_driving", mlastlocation.getLatitude() + "," + mlastlocation.getLongitude(), rider_lat + "," + rider_lng, "AIzaSyCz--LqThFx6f-C2KBVleSOv0J9-vcc-nY")
                 .enqueue(new Callback<Directions>() {
                     @Override
                     public void onResponse(Call<Directions> call, Response<Directions> response) {
@@ -487,9 +487,9 @@ public class DriverTracking extends FragmentActivity implements OnMapReadyCallba
                 .radius(50)
                 .strokeColor(Color.BLUE).fillColor(0x220000FF)
                 .strokeWidth(5.0f));
-         mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
-                 .position(new LatLng(rider_lat,rider_lng))
-         .title("Pick up here"));
+        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.pin))
+                .position(new LatLng(rider_lat,rider_lng))
+                .title("Pick up here"));
         geoFire=new GeoFire(FirebaseDatabase.getInstance().getReference(commons.driver_location));
         GeoQuery geoQuery=geoFire.queryAtLocation(new GeoLocation(rider_lat,rider_lng),0.05f);
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
@@ -536,6 +536,9 @@ public class DriverTracking extends FragmentActivity implements OnMapReadyCallba
                         Toast.makeText(DriverTracking.this,"Failed",Toast.LENGTH_LONG).show();
                     }else{
                         Toast.makeText(DriverTracking.this,"Success",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(DriverTracking.this,TripDetail.class);
+                        startActivity(intent);
+                        finish();
                     }
                 Log.e("arrival_notification",response.toString());
             }
@@ -614,7 +617,7 @@ public class DriverTracking extends FragmentActivity implements OnMapReadyCallba
         // Building the url to the web service
         String url = "https://maps.googleapis.com/maps/api/directions/json?"+parameters;
 
-     return url;
+        return url;
 
 
     }
@@ -646,34 +649,34 @@ public class DriverTracking extends FragmentActivity implements OnMapReadyCallba
             InputStream iStream = null;
             HttpURLConnection urlConnection = null;
             if (mlastlocation !=null)
-            try {
-                URL url = new URL(strUrl);
+                try {
+                    URL url = new URL(strUrl);
 
-                urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection = (HttpURLConnection) url.openConnection();
 
-                urlConnection.connect();
+                    urlConnection.connect();
 
-                iStream = urlConnection.getInputStream();
+                    iStream = urlConnection.getInputStream();
 
-                BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
+                    BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
 
-                StringBuffer sb = new StringBuffer();
+                    StringBuffer sb = new StringBuffer();
 
-                String line = "";
-                while ((line = br.readLine()) != null) {
-                    sb.append(line);
+                    String line = "";
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line);
+                    }
+
+                    data = sb.toString();
+
+                    br.close();
+
+                } catch (Exception e) {
+                    Log.d("Exception", e.toString());
+                } finally {
+                    iStream.close();
+                    urlConnection.disconnect();
                 }
-
-                data = sb.toString();
-
-                br.close();
-
-            } catch (Exception e) {
-                Log.d("Exception", e.toString());
-            } finally {
-                iStream.close();
-                urlConnection.disconnect();
-            }
             return data;
         }
     }

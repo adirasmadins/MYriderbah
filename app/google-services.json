@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "379504821429-u63me6or2ls1fbhpa8ih9prfqklj0etq.apps.googleusercontent.com",
+          "client_id": "379504821429-dcs55gfjhlns27k7nqe5cja0mp8kvb8c.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "driver.dev.asliborneo.app.myridebah",
-            "certificate_hash": "abdf27ccba9b5b0c2ab4299e719f07e66eed27a2"
+            "certificate_hash": "63561f05261a9d8c280e9cfdf18b62210be55da0"
           }
         },
         {
@@ -29,13 +29,19 @@
       ],
       "api_key": [
         {
+          "current_key": "AIzaSyCvTarh15HCSswRUYYBspC686nejxq8xH4"
+        },
+        {
+          "current_key": "AIzaSyCw0musjvyG7sFkZf0QeVCCeUPK3TEztIE"
+        },
+        {
           "current_key": "AIzaSyDEijHZvFFhN6-7aLSYJhpBooJUkzzOqa0"
         },
         {
-          "current_key": "AIzaSyAzCKysV_w1Eva5KuByZFzL2IPurWMyZ9I"
+          "current_key": "AIzaSyAWGnC-oZPFSjaMA3_hQ0G4fAOdY2d0fcQ"
         },
         {
-          "current_key": "AIzaSyCV_9lGh8j6QBQqgrMWaT2FSlDYeweCxz4"
+          "current_key": "AIzaSyAzCKysV_w1Eva5KuByZFzL2IPurWMyZ9I"
         },
         {
           "current_key": "AIzaSyBhAbpv9j4Xr0OfQQSZTXVRMfx8u4p1mr4"
@@ -68,11 +74,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "379504821429-1197p5f8pseqjh28s056671ph0jlejql.apps.googleusercontent.com",
+          "client_id": "379504821429-6tol6b6nhjha4q0soto4cctc6sda0qmu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "rider.dev.asliborneo.app.myridebah",
-            "certificate_hash": "abdf27ccba9b5b0c2ab4299e719f07e66eed27a2"
+            "certificate_hash": "63561f05261a9d8c280e9cfdf18b62210be55da0"
           }
         },
         {
@@ -82,13 +88,19 @@
       ],
       "api_key": [
         {
+          "current_key": "AIzaSyCvTarh15HCSswRUYYBspC686nejxq8xH4"
+        },
+        {
+          "current_key": "AIzaSyCw0musjvyG7sFkZf0QeVCCeUPK3TEztIE"
+        },
+        {
           "current_key": "AIzaSyDEijHZvFFhN6-7aLSYJhpBooJUkzzOqa0"
         },
         {
-          "current_key": "AIzaSyAzCKysV_w1Eva5KuByZFzL2IPurWMyZ9I"
+          "current_key": "AIzaSyAWGnC-oZPFSjaMA3_hQ0G4fAOdY2d0fcQ"
         },
         {
-          "current_key": "AIzaSyCV_9lGh8j6QBQqgrMWaT2FSlDYeweCxz4"
+          "current_key": "AIzaSyAzCKysV_w1Eva5KuByZFzL2IPurWMyZ9I"
         },
         {
           "current_key": "AIzaSyBhAbpv9j4Xr0OfQQSZTXVRMfx8u4p1mr4"
