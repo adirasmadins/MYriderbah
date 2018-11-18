@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                             commons.current_user=dataSnapshot.getValue(User.class);
                             waitingdialog.dismiss();
                             Toast.makeText(MainActivity.this,"Login Sucess",Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(MainActivity.this,DriverHome.class));
+                            startActivity(new Intent(MainActivity.this,Driver_Home.class));
                             finish();
                         }
 
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
                                         commons.current_user=dataSnapshot.getValue(User.class);
                                         waitingdialog.dismiss();
                                         Toast.makeText(MainActivity.this,"Login Sucess",Toast.LENGTH_LONG).show();
-                                        startActivity(new Intent(MainActivity.this,DriverHome.class));
+                                        startActivity(new Intent(MainActivity.this,Driver_Home.class));
                                         finish();
                                     }
 

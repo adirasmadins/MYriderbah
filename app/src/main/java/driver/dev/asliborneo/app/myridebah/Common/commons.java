@@ -8,6 +8,7 @@ import driver.dev.asliborneo.app.myridebah.Remote.RetrofitClient;
 
 
 public class commons {
+    public static Location mlastlocation = null;
     public static String Current_Token;
     public static final String driver_location="Drivers";
     public static final String Registered_driver="DriverInformation";
