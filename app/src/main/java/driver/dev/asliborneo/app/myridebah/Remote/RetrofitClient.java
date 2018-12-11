@@ -1,5 +1,6 @@
 package driver.dev.asliborneo.app.myridebah.Remote;
 
+import driver.dev.asliborneo.app.myridebah.Common.Common;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -21,6 +22,15 @@ public class RetrofitClient {
             retrofit=new Retrofit.Builder()
                     .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl("https://maps.googleapis.com/")
+                    .build();
+        }
+        return retrofit;
+    }
+    public static Retrofit getPath(String baseURL){
+        if (retrofit==null){
+            retrofit=new Retrofit.Builder()
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .baseUrl(Common.baseURL)
                     .build();
         }
         return retrofit;

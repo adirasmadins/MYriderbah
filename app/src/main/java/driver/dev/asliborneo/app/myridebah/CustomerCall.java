@@ -15,28 +15,30 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+
 import java.util.ArrayList;
 
 import driver.dev.asliborneo.app.myridebah.Common.commons;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import driver.dev.asliborneo.app.myridebah.Model.Notification;
 import driver.dev.asliborneo.app.myridebah.Model.Token;
 import driver.dev.asliborneo.app.myridebah.Model.fcm_response;
 import driver.dev.asliborneo.app.myridebah.Model.sender;
-import driver.dev.asliborneo.app.myridebah.Remote.FCMService;
-import driver.dev.asliborneo.app.myridebah.Remote.IGoogleAPI;
+import  driver.dev.asliborneo.app.myridebah.Remote.FCMService;
 import driver.dev.asliborneo.app.myridebah.Remote.RetrofitClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import driver.dev.asliborneo.app.myridebah.Remote.IGoogleAPI;
 
+import static driver.dev.asliborneo.app.myridebah.DriverHome.mlastlocation;
 
 public class CustomerCall extends AppCompatActivity {
-    TextView txt_time, txt_distance, txt_Address;
+    public TextView txt_time, txt_distance, txt_Address;
     Button cancel_btn,accept_btn;
     MediaPlayer mediaPlayer;
     private PolylineOptions polylineOptions, blackpolylineoptions;
-    private Polyline blackpolyline, greypolyline;
-    private ArrayList<LatLng> polylinelist;
+    Polyline blackpolyline, greypolyline;
+    ArrayList<LatLng> polylinelist;
     String Customer_id;
     double lat,lng;
     @Override
@@ -54,6 +56,7 @@ public class CustomerCall extends AppCompatActivity {
             public void onClick(View view) {
                 if(!TextUtils.isEmpty(Customer_id)){
                     cancel_booking(Customer_id);
+                    Intent intent = new Intent(CustomerCall.this,DriverHome.class);
                 }
             }
         });
@@ -103,17 +106,36 @@ public class CustomerCall extends AppCompatActivity {
 
     private void getDirection(double lat,double lng) {
         IGoogleAPI service=RetrofitClient.get_direction_client().create(IGoogleAPI.class);
-        Call<Directions> call=service.getPath("driving","less_driving" , commons.mlastlocation.getLatitude()+","+commons.mlastlocation.getLongitude(),lat+","+lng,getResources().getString(R.string.google_direction_api));
+        Call<Directions> call=service.getPath("driving","less_driving" ,mlastlocation.getLatitude()+","+mlastlocation.getLongitude(),lat+","+lng,getResources().getString(R.string.google_direction_api));
         call.enqueue(new Callback<Directions>() {
             @Override
             public void onResponse(Call<Directions> call, Response<Directions> response) {
-              if (commons.mlastlocation !=null)
                 if(response.body()!=null){
                     if( response.body().routes.size()>0)
                         if(response.body().routes.get(0).legs.size()>0) {
                             txt_distance.setText(response.body().routes.get(0).legs.get(0).distance.text);
                             txt_Address.setText(response.body().routes.get(0).legs.get(0).end_address);
                             txt_time.setText(response.body().routes.get(0).legs.get(0).duration.text);
+
+                            if( response.body().routes.size()>0)
+                                if(response.body().routes.get(0).legs.size()>0) {
+                                    String distance_text=response.body().routes.get(0).legs.get(0).distance.text;
+                                    Double distance_value=Double.parseDouble(distance_text.replaceAll("[^0-9\\\\.]+",""));
+                                    //  response.body().routes.get(0).legs.get(0).start_address;
+                                    String time_text= response.body().routes.get(0).legs.get(0).duration.text;
+                                    Double time_value=Double.parseDouble(time_text.replaceAll("[^0-9\\\\.]+",""));
+
+                                    Intent intent=new Intent(CustomerCall.this,DriverTracking.class);
+                                    intent.putExtra("start_address",response.body().routes.get(0).legs.get(0).start_address);
+                                    intent.putExtra("Time",String.valueOf(time_value));
+                                    intent.putExtra("Distance",String.valueOf(distance_value));
+                                    intent.putExtra("end_address",response.body().routes.get(0).legs.get(0).end_address);
+                                    intent.putExtra("Total",commons.price_formula(distance_value,time_value));
+                                    intent.putExtra("Location_end",String.format("%f,%f",mlastlocation.getLatitude(),mlastlocation.getLongitude()));
+                                    startActivity(intent);
+                                    finish();
+
+                                }
                         }
                 }else{
                     Toast.makeText(CustomerCall.this,"Error in fetching location",Toast.LENGTH_LONG).show();
@@ -139,4 +161,6 @@ public class CustomerCall extends AppCompatActivity {
         super.onPause();
     }
 }
+
+
 

@@ -1,4 +1,4 @@
-package driver.dev.asliborneo.app.myridebah;
+package driver.dev.asliborneo.app.myridebah.Common;
 
 import android.*;
 import android.app.AlertDialog;
@@ -84,10 +84,8 @@ import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import dmax.dialog.SpotsDialog;
-import driver.dev.asliborneo.app.myridebah.Common.commons;
-import driver.dev.asliborneo.app.myridebah.Model.Token;
 import io.paperdb.Paper;
-
+import usmanali.uberclone.Model.Token;
 
 public class Driver_Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,OnMapReadyCallback, com.google.android.gms.location.LocationListener,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener {
     private GoogleMap mMap;
@@ -99,7 +97,7 @@ public class Driver_Home extends AppCompatActivity implements NavigationView.OnN
     Marker mcurrent;
     MaterialAnimatedSwitch location_switch;
     SupportMapFragment mapFragment;
-     int PICK_IMAGE_REQUEST=9999;
+    int PICK_IMAGE_REQUEST=9999;
     private PlaceAutocompleteFragment autocompleteFragment;
     AutocompleteFilter typefilter;
     private String destination;
@@ -124,12 +122,12 @@ public class Driver_Home extends AppCompatActivity implements NavigationView.OnN
         final SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-      View navigation_header_view=navigationView.getHeaderView(0);
-      CircleImageView avatar=(CircleImageView) navigation_header_view.findViewById(R.id.avatar);
-      TextView name=(TextView) navigation_header_view.findViewById(R.id.driver_name);
-      TextView rating=(TextView) navigation_header_view.findViewById(R.id.rating);
-      rating.setText(commons.current_user.getRates());
-      name.setText(commons.current_user.getName());
+        View navigation_header_view=navigationView.getHeaderView(0);
+        CircleImageView avatar=(CircleImageView) navigation_header_view.findViewById(R.id.avatar);
+        TextView name=(TextView) navigation_header_view.findViewById(R.id.driver_name);
+        TextView rating=(TextView) navigation_header_view.findViewById(R.id.rating);
+        rating.setText(commons.current_user.getRates());
+        name.setText(commons.current_user.getName());
         if (!TextUtils.isEmpty(commons.current_user.getAvatarurl())){
             Picasso.with(Driver_Home.this).load(commons.current_user.getAvatarurl()).into(avatar);
         }
@@ -363,7 +361,7 @@ public class Driver_Home extends AppCompatActivity implements NavigationView.OnN
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.driver_home, menu);
+        getMenuInflater().inflate(R.menu.driver__home, menu);
         return true;
     }
 
@@ -400,7 +398,7 @@ public class Driver_Home extends AppCompatActivity implements NavigationView.OnN
             Sign_Out();
 
         }else if(id== R.id.nav_change_password){
-          show_change_password_dialog();
+            show_change_password_dialog();
         } else if (id==R.id.nav_update_profile) {
             show_update_profile_dialog();
         }
@@ -478,15 +476,15 @@ public class Driver_Home extends AppCompatActivity implements NavigationView.OnN
                 dialog.setCancelable(false);
                 dialog.show();
                 String image_id= UUID.randomUUID().toString();
-                 final StorageReference image_folder=storageReference.child("images/"+image_id);
-                 image_folder.putFile(saveuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                     @Override
-                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                         dialog.dismiss();
-                         Toast.makeText(Driver_Home.this,"Uploaded!",Toast.LENGTH_LONG).show();
-                         image_folder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                             @Override
-                             public void onSuccess(Uri uri) {
+                final StorageReference image_folder=storageReference.child("images/"+image_id);
+                image_folder.putFile(saveuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        dialog.dismiss();
+                        Toast.makeText(Driver_Home.this,"Uploaded!",Toast.LENGTH_LONG).show();
+                        image_folder.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
                                 Map<String,Object> avatar_update=new HashMap<>();
                                 avatar_update.put("avatarurl",uri.toString());
                                 DatabaseReference driver_information_reference=FirebaseDatabase.getInstance().getReference("DriverInformation");
@@ -500,21 +498,21 @@ public class Driver_Home extends AppCompatActivity implements NavigationView.OnN
                                         }
                                     }
                                 });
-                             }
-                         });
-                     }
-                 }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                     @Override
-                     public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                       double progress=(100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
-                       dialog.setMessage("Uploading "+progress+"%");
-                     }
-                 }).addOnFailureListener(new OnFailureListener() {
-                     @Override
-                     public void onFailure(@NonNull Exception e) {
-                         Toast.makeText(Driver_Home.this,e.getMessage(),Toast.LENGTH_LONG).show();
-                     }
-                 });
+                            }
+                        });
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double progress=(100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                        dialog.setMessage("Uploading "+progress+"%");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Driver_Home.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         }
     }
@@ -540,35 +538,35 @@ public class Driver_Home extends AppCompatActivity implements NavigationView.OnN
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                               FirebaseAuth.getInstance().getCurrentUser().updatePassword(repeat_new_password.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                   @Override
-                                   public void onComplete(@NonNull Task<Void> task) {
-                                       if(task.isSuccessful()){
-                                           Map<String,Object> password=new HashMap<>();
-                                           password.put("password",repeat_new_password.getText().toString());
-                                           DatabaseReference driver_information_reference=FirebaseDatabase.getInstance().getReference("DriverInformation");
-                                           driver_information_reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(password).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                               @Override
-                                               public void onComplete(@NonNull Task<Void> task) {
-                                                   if (task.isSuccessful()){
-                                                       waiting_dialog.dismiss();
-                                                       Toast.makeText(Driver_Home.this,"Password has changed",Toast.LENGTH_LONG).show();
-                                                   }else{
-                                                       waiting_dialog.dismiss();
-                                                       Toast.makeText(Driver_Home.this,"Password was cchanged but not updated in Database",Toast.LENGTH_LONG).show();
-                                                   }
-                                               }
-                                           });
+                                FirebaseAuth.getInstance().getCurrentUser().updatePassword(repeat_new_password.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Map<String,Object> password=new HashMap<>();
+                                            password.put("password",repeat_new_password.getText().toString());
+                                            DatabaseReference driver_information_reference=FirebaseDatabase.getInstance().getReference("DriverInformation");
+                                            driver_information_reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).updateChildren(password).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()){
+                                                        waiting_dialog.dismiss();
+                                                        Toast.makeText(Driver_Home.this,"Password has changed",Toast.LENGTH_LONG).show();
+                                                    }else{
+                                                        waiting_dialog.dismiss();
+                                                        Toast.makeText(Driver_Home.this,"Password was cchanged but not updated in Database",Toast.LENGTH_LONG).show();
+                                                    }
+                                                }
+                                            });
 
-                                       }else{
-                                           waiting_dialog.dismiss();
-                                          Toast.makeText(Driver_Home.this,"Password has not Changed due to some Error",Toast.LENGTH_LONG).show();
-                                       }
-                                   }
-                               });
+                                        }else{
+                                            waiting_dialog.dismiss();
+                                            Toast.makeText(Driver_Home.this,"Password has not Changed due to some Error",Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
                             }else{
-                              waiting_dialog.dismiss();
-                              Toast.makeText(Driver_Home.this,"Old Password is incorrect",Toast.LENGTH_LONG).show();
+                                waiting_dialog.dismiss();
+                                Toast.makeText(Driver_Home.this,"Old Password is incorrect",Toast.LENGTH_LONG).show();
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {

@@ -38,12 +38,16 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".Service$MyFirebaseIdService" android:permission="">
+        <service
+            android:name=".Service$MyFirebaseIdService"
+            android:permission="">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".Service$MyFirebaseMessaging" android:permission="">
+        <service
+            android:name=".Service$MyFirebaseMessaging"
+            android:permission="">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -54,7 +58,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Driver_Home"
+            android:name=".DriverHome"
             android:label="@string/title_activity_driver_home"
             android:theme="@style/AppTheme" />
         <activity
@@ -63,7 +67,11 @@
         <activity
             android:name=".TripDetail"
             android:label="@string/title_activity_trip_detail" />
-        <activity android:name=".CustomerCall"></activity>
+        <activity android:name=".CustomerCall" />
+        <activity
+            android:name=".Welcome"
+            android:label="@string/title_activity_welcome" />
+        <activity android:name=".Common.Driver_Home"></activity>
     </application>
 
 </manifest>

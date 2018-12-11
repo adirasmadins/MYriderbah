@@ -1,0 +1,126 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tap_text"
+            android:text="tap_instructions"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/camera_text"
+            android:background="@android:color/white"
+            android:text="move_the_camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/layout_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+           <EditText
+                  android:id="@+id/edtPlace"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Enter Pickup Location"
+                  android:layout_margin="10dp"
+                  android:layout_weight="5"
+                  />
+              <Button
+                  android:id="@+id/btnGo"
+                  android:text="GO"
+                  android:layout_weight="1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+
+        <fragment
+            android:id="@+id/place_autocomplete_fragment"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+            android:layout_weight="5"
+
+
+
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+    <fragment
+        android:layout_below="@id/layout_panel"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="app.asliborneo.dev.iway.views.WelcomeActivity"/>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="10dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            >
+
+            <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+                android:id="@+id/location_switch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                app:ball_press_color="@android:color/white"
+                app:ball_release_color="@color/ballReleaseColor"
+                app:base_press_color="@color/basePressColor"
+                app:base_release_color="@color/baseReleaseColor"
+                app:icon_press="@drawable/ic_location_off"
+                app:icon_release="@drawable/ic_location_on"
+                />
+
+            <Button
+                android:id="@+id/btn_find_users"
+                android:layout_width="0dp"
+                android:background="@drawable/btn_signin"
+                android:textColor="@android:color/white"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:text="FIND USERS"
+
+                />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+</RelativeLayout>
+
+

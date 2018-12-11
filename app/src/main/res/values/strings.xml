@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">i-transport!!!</string>
     <string name="title_activity_welcome">Map</string>
-    <string name="google_direction_api">AIzaSyBcbLAMZ8lY23ch55Oq5xuGbe58w7SRKn8</string>
+    <string name="google_direction_api">AIzaSyC7dw9rRaQnMiGaWfQfkGCZelOYrKrGJ7M</string>
     <string name="location_permission_denied">permission denied</string>
     <string name="permission_required_toast">required toast</string>
     <string name="permission_rationale_location">permission rationale</string>
