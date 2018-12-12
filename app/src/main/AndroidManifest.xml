@@ -68,9 +68,6 @@
             android:name=".TripDetail"
             android:label="@string/title_activity_trip_detail" />
         <activity android:name=".CustomerCall" />
-        <activity
-            android:name=".Welcome"
-            android:label="@string/title_activity_welcome" />
         <activity android:name=".Common.Driver_Home"></activity>
     </application>
 
